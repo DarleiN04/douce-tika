@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Douce T'ika KPE | Catálogo Exclusivo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primario: #d4a373;
+            --secundario: #faedcd;
+            --acento: #e5989b;
+            --oscuro: #6b705c;
+            --whatsapp: #25D366;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fffafb;
+            margin: 0;
+            color: #333;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 0;
+            color: var(--oscuro);
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--primario);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            cursor: zoom-in;
+            /* Indica que se puede ampliar */
+            transition: opacity 0.3s;
+        }
+
+        .card img:hover {
+            opacity: 0.9;
+        }
+
+        .card-info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-info h3 {
+            font-family: 'Playfair Display', serif;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: var(--acento);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .btn-order {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: var(--oscuro);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-order:hover {
+            background-color: var(--whatsapp);
+        }
+
+        /* --- ESTILOS DEL VISOR DE IMAGEN (MODAL) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            cursor: default;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--oscuro);
+            color: white;
+            margin-top: 50px;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #faedcd 0%, #fffafb 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--secundario);
+        }
+
+        /* Adorno floral decorativo detrás del texto */
+        header::before {
+            content: '✿';
+            position: absolute;
+            top: -20px;
+            left: 5%;
+            font-size: 150px;
+            color: rgba(229, 152, 155, 0.1);
+            transform: rotate(-15deg);
+        }
+
+        header::after {
+            content: '✿';
+            position: absolute;
+            bottom: -40px;
+            right: 5%;
+            font-size: 120px;
+            color: rgba(107, 112, 92, 0.1);
+            transform: rotate(20deg);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            /* Un poco más grande para impacto */
+            font-weight: 700;
+            margin: 0;
+            color: var(--oscuro);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--primario);
+            margin-top: 15px;
+            position: relative;
+            display: inline-block;
+            padding: 0 40px;
+        }
+
+        /* Líneas decorativas al lado del subtítulo */
+        .subtitle::before,
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background-color: var(--primario);
+        }
+
+        .subtitle::before {
+            left: 0;
+        }
+
+        .subtitle::after {
+            right: 0;
+        }
+
+        /* Responsive para celulares */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header {
+                padding: 50px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Douce T'ika KPE</h1>
+        <p class="subtitle">Belleza que no marchita, momentos que perduran.</p>
+    </header>
+
+    <div class="container">
+        <div id="catalog" class="catalog-grid"></div>
+    </div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Douce T'ika KPE - Catálogo Digital</p>
+    </footer>
+
+    <script>
+    const catalogContainer = document.getElementById('catalog');
+    const modal = document.getElementById('imageModal');
+    const fullImg = document.getElementById('fullImage');
+    const numeroWhatsApp = "51990398849";
+
+    // --- ¡AQUÍ ES DONDE CAMBIAS TODO! ---
+    // Solo edita lo que está entre comillas.
+    const datosRamos = {
+        1: { nombre: "Ramo Primavera", desc: "Flores de limpiapipa + Oso Amigurumi", precio: "S/45.00" },
+        2: { nombre: "Ramo Pasión Roja", desc: "12 Rosas eternas de limpiapipa", precio: "S/55.00" },
+        3: { nombre: "Mini Detalle", desc: "Girasol individual tejido", precio: "S/20.00" },
+        // Puedes seguir agregando hasta el 47...
+    };
+
+    // Configuraciones por defecto para los que no edites arriba
+    const nombreDefecto = "Ramo Eterno";
+    const descDefecto = "Flores hechas con limpiapipas";
+    const precioDefecto = "S/50.00";
+
+    const totalRamos = 47;
+
+    for (let i = 1; i <= totalRamos; i++) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Buscamos si el ramo i tiene datos personalizados, si no, usamos los defectos
+        const info = datosRamos[i] || { 
+            nombre: `${nombreDefecto} #${i}`, 
+            desc: descDefecto, 
+            precio: precioDefecto 
+        };
+
+        const mensajeWA = encodeURIComponent(`Hola, estoy interesad@ en el ${info.nombre} (Imagen ${i}) por favor quisiera más información.`);
+
+        card.innerHTML = `
+            <img src="ramos areglos/${i}.jpeg" 
+                 alt="${info.nombre}" 
+                 onclick="openModal(this.src)"
+                 onerror="this.src='https://via.placeholder.com/300x400?text=Ramo+${i}'">
+            <div class="card-info">
+                <div>
+                    <h3>${info.nombre}</h3>
+                    <p>${info.desc}</p>
+                </div>
+                <div>
+                    <p class="price">${info.precio}</p>
+                    <a href="https://wa.me/${numeroWhatsApp}?text=${mensajeWA}" 
+                       target="_blank" 
+                       class="btn-order">
+                       Consultar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        `;
+        catalogContainer.appendChild(card);
+    }
+
+    function openModal(src) {
+        modal.style.display = "flex";
+        fullImg.src = src;
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closeModal();
+    });
+</script>
+</body>
+
+</html>
