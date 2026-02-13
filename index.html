@@ -4,42 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Douce T'ika KPE | Catálogo Exclusivo</title>
+    <title>Douce T'ika KPE | Catálogo Completo 🌹</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --primario: #d4a373;
-            --secundario: #faedcd;
-            --acento: #e5989b;
-            --oscuro: #6b705c;
+            --rojo-pasion: #be1e2d;
+            --rosa-tierno: #ffccd5;
+            --crema-fondo: #fffafb;
+            --dorado: #d4a373;
             --whatsapp: #25D366;
+            --oscuro: #4a4e69;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #fffafb;
-            margin: 0;
-            color: #333;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            background-color: var(--crema-fondo);
             margin: 0;
             color: var(--oscuro);
+            overflow-x: hidden;
+        }
+
+        /* --- FONDO ANIMADO DE CORAZONES --- */
+        #particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-particle {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0.5;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- DISEÑO DE CABECERA --- */
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 10;
+            border-bottom: 2px solid var(--rosa-tierno);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--rojo-pasion);
+            text-transform: uppercase;
         }
 
         .subtitle {
-            font-style: italic;
-            color: var(--primario);
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--dorado);
         }
 
+        .proceso-card {
+            max-width: 900px;
+            margin: -40px auto 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(190, 30, 45, 0.1);
+            border: 1px solid var(--rosa-tierno);
+            position: relative;
+            z-index: 20;
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        /* --- GRID DE 47 MODELOS --- */
         .container {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 1300px;
+            margin: 0 auto 60px;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
         .catalog-grid {
@@ -50,287 +120,232 @@
 
         .card {
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+            text-align: center;
+            border: 1px solid transparent;
         }
 
         .card:hover {
             transform: translateY(-10px);
+            border-color: var(--rojo-pasion);
+            box-shadow: 0 15px 30px rgba(190, 30, 45, 0.1);
         }
 
         .card img {
             width: 100%;
-            height: 320px;
+            height: 300px;
             object-fit: cover;
-            cursor: zoom-in;
-            /* Indica que se puede ampliar */
-            transition: opacity 0.3s;
+            border-radius: 15px;
+            background-color: #f0f0f0;
         }
 
-        .card img:hover {
-            opacity: 0.9;
-        }
-
-        .card-info {
-            padding: 20px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-info h3 {
+        .card h3 {
             font-family: 'Playfair Display', serif;
-            margin: 10px 0;
+            margin: 15px 0 5px;
+            font-size: 1.3rem;
+            color: var(--rojo-pasion);
         }
 
         .price {
-            color: var(--acento);
+            font-size: 1.5rem;
             font-weight: bold;
-            font-size: 1.2rem;
-            margin: 10px 0;
+            color: var(--oscuro);
+            display: block;
+            margin-bottom: 15px;
         }
 
         .btn-order {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: var(--oscuro);
+            display: block;
+            padding: 12px;
+            background: var(--rojo-pasion);
             color: white;
             text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.85rem;
+            border-radius: 50px;
             font-weight: bold;
-            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            transition: 0.3s;
         }
 
         .btn-order:hover {
-            background-color: var(--whatsapp);
+            background: var(--whatsapp);
         }
 
-        /* --- ESTILOS DEL VISOR DE IMAGEN (MODAL) --- */
+        footer {
+            background: var(--rojo-pasion);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
-            cursor: pointer;
         }
 
-        .modal-content {
+        .modal img {
             max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            cursor: default;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: var(--oscuro);
-            color: white;
-            margin-top: 50px;
-        }
-
-        header {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #faedcd 0%, #fffafb 100%);
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid var(--secundario);
-        }
-
-        /* Adorno floral decorativo detrás del texto */
-        header::before {
-            content: '✿';
-            position: absolute;
-            top: -20px;
-            left: 5%;
-            font-size: 150px;
-            color: rgba(229, 152, 155, 0.1);
-            transform: rotate(-15deg);
-        }
-
-        header::after {
-            content: '✿';
-            position: absolute;
-            bottom: -40px;
-            right: 5%;
-            font-size: 120px;
-            color: rgba(107, 112, 92, 0.1);
-            transform: rotate(20deg);
-        }
-
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            /* Un poco más grande para impacto */
-            font-weight: 700;
-            margin: 0;
-            color: var(--oscuro);
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .subtitle {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--primario);
-            margin-top: 15px;
-            position: relative;
-            display: inline-block;
-            padding: 0 40px;
-        }
-
-        /* Líneas decorativas al lado del subtítulo */
-        .subtitle::before,
-        .subtitle::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 30px;
-            height: 1px;
-            background-color: var(--primario);
-        }
-
-        .subtitle::before {
-            left: 0;
-        }
-
-        .subtitle::after {
-            right: 0;
-        }
-
-        /* Responsive para celulares */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            header {
-                padding: 50px 15px;
-            }
+            max-height: 80vh;
+            border: 5px solid white;
         }
     </style>
 </head>
 
 <body>
 
+    <div id="particle-container"></div>
+
     <header>
         <h1>Douce T'ika KPE</h1>
-        <p class="subtitle">Belleza que no marchita, momentos que perduran.</p>
+        <div class="subtitle">Catálogo San Valentí n🌹</div>
     </header>
 
     <div class="container">
+        <div class="proceso-card">
+            <h2
+                style="font-family: 'Playfair Display', serif; color: var(--rojo-pasion); margin-bottom: 25px; font-size: 1.5rem;">
+                PASOS PARA SOLICITAR UN RAMO PERSONALIZADO
+            </h2>
+
+            <div class="steps">
+                <div>
+                    <b>1. Elige</b>
+                    <p>Toma captura a tu favorito</p>
+                </div>
+                <div>
+                    <b>2. Reserva</b>
+                    <p>Adelanto del 50% vía Yape/BCP</p>
+                </div>
+                <div>
+                    <b>3. Recibe</b>
+                    <p>Entrega en punto acordado</p>
+                </div>
+            </div>
+        </div>
+
         <div id="catalog" class="catalog-grid"></div>
     </div>
 
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="fullImage">
+    <div id="imageModal" class="modal" onclick="this.style.display='none'">
+        <img id="fullImage">
     </div>
 
     <footer>
-        <p>&copy; 2026 Douce T'ika KPE - Catálogo Digital</p>
-    </footer>
+    <p>Douce T'ika KPE © 2026 | WhatsApp: +51 990 398 849</p>
+    <div class="social-links">
+        <a href="https://www.tiktok.com/@douce.tika.kpe" target="_blank" class="tiktok-link">
+            <span>♪</span> Síguenos en TikTok: @doucetikakpe
+        </a>
+    </div>
+</footer>
 
     <script>
-    const catalogContainer = document.getElementById('catalog');
-    const modal = document.getElementById('imageModal');
-    const fullImg = document.getElementById('fullImage');
-    const numeroWhatsApp = "51990398849";
+        // --- EFECTO CORAZONES ---
+        const pContainer = document.getElementById('particle-container');
+        const hearts = ['❤️', '💖', '🌸', '🌹'];
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.className = 'heart-particle';
+            h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            pContainer.appendChild(h);
+            setTimeout(() => h.remove(), 6000);
+        }, 450);
 
-    // --- ¡AQUÍ ES DONDE CAMBIAS TODO! ---
-    // Solo edita lo que está entre comillas.
-    const datosRamos = {
-        1: { nombre: "Ramo Limpiapipa", desc: "Flores de limpiapipa + Oso Amigurumi", precio: "S/58.00" },
-        2: { nombre: "Ramo Pasión Roja", desc: "12 Rosas eternas de limpiapipa", precio: "S/55.00" },
-        3: { nombre: "Mini Detalle", desc: "Girasol individual tejido", precio: "S/20.00" },
-        // Puedes seguir agregando hasta el 47...
-    };
+        // --- GENERACIÓN DE LOS 47 MODELOS ---
+        const catalog = document.getElementById('catalog');
+        const numWhatsApp = "51990398849";
 
-    // Configuraciones por defecto para los que no edites arriba
-    const nombreDefecto = "Ramo Eterno";
-    const descDefecto = "Flores hechas con limpiapipas";
-    const precioDefecto = "S/50.00";
-
-    const totalRamos = 47;
-
-    for (let i = 1; i <= totalRamos; i++) {
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        // Buscamos si el ramo i tiene datos personalizados, si no, usamos los defectos
-        const info = datosRamos[i] || { 
-            nombre: `${nombreDefecto} #${i}`, 
-            desc: descDefecto, 
-            precio: precioDefecto 
+        // Datos específicos extraídos de tu catálogo para los primeros
+        const infoEspecial = {
+            1: { n: "Ramo Pollito Aventurero", p: "S/.58.00", d: "Amigurumi de pollito - Flores de limpiapipa"},
+            2: { n: "Pasión en Felpa", p: "S/.40.00", d: "Mini Margaritas - Rosas de limpiapipas" },
+            3: { n: "Rider Blue Velvet", p: "S/.53.00", d: "4 Rosas de liston + Moño + Moto a escala" },
+            4: { n: "Dulce Brote Rosa", p: "S/.40.00", d: "Mini Amigurumi - Rosas de limpiapipa" },
+            5: { n: "El Clásico del Barrio", p: "S/.50.00", d: "4 Rosas de liston + Moño + Mototaxi a escala" },
+            6: { n: "Esencia de Oro", p: "S/.87.00", d: "5 Rosas de Liston + Moño + Perfume Temptation" },
+            7: { n: "Mototaxi Premium", p: "S/.47.00", d: "4 Rosas de liston + Moño + Mototaxi a escala" },
+            8: { n: "Rider Infinito", p: "S/.53.00", d: "4 Rosas de liston + Moño + Moto a escala" },
+            9: { n: "Noche de Gala", p: "S/.90.00", d: "5 Rosas de liston + Moño + Perfume D'orsay" },
+            10: { n: "Hechizo Rosa", p: "S/.68.00", d: "5 Rosas de liston + Moño + Colonia PinkBloss + Pestañas" },
+            11: { n: "Destello de Seda", p: "S/.--.--", d: "5 Rosas de liston + Perfume + Moño" },
+            12: { n: "Ruta Libre", p: "S/.53.00", d: "4 Rosas de liston + Moño + Moto a escala" },
+            13: { n: "Esencia Magenta", p: "S/.70.00", d: "5 Rosas de liston + Moño + Perfume Prints + Pesatañas" },
+            14: { n: "Aroma a Lotso", p: "S/.86.00", d: "Peluche importado + Lirios de limpiapipas" },
+            15: { n: "Ternura de Algodón", p: "S/.55.00", d: "Peluche pequeño + Flores de limpiapipa" },
+            16: { n: "Cielo de Amistad", p: "S/.55.00", d: "Peluche Celeste + Rosas de limpiapipa" },
+            17: { n: "Pequeño Salto de Amor", p: "S/.68.00", d: "Sapito amigurumi + Rosas de limpiapipa" },
+            18: { n: "Abrazo de Bosque Azul", p: "S/.70.00", d: "Oso amigurumi + Rosas de limpiapipa" },
+            19: { n: "Miau Dulce Detalle", p: "S/.68.00", d: "Gato amigurumi + Rosas de limpiapipa" },
+            20: { n: "Ternura en Flor", p: "S/.43.00", d: "1 Cerdito tulipan + Flores limpiapipa" },
+            21: { n: "Dúo Abrazos de Fresa", p: "S/.57.00", d: "Lotsos Tulipan + Flores de limpiapipas" },
+            22: { n: "Bouquet Ternura Mix", p: "S/.50.00", d: "Lirio de limpiapipas + orquidea de limpiapipas" },
+            23: { n: "Explosión de Alegría", p: "S/.56.00", d: "7 Berberas de limpiapipas + Liston" },
+            24: { n: "Amor Antártico", p: "S/.25.00", d: "Detalle individual tejido" },
+            25: { n: "Dulzura de Panal", p: "S/.68.00", d: "8 Rosas de liston + Moño + Abejita" },
+            26: { n: "Guardián del Amor", p: "S/.88.00", d: "Rosas de liston + Lazo con frase + Osita Policia"},
+            27: { n: "Sol de mi Vida", p: "S/.58.00", d: "19 Rosas de liston + Liston con frase" },
+            28: { n: "Kitty Amor Infinito", p: "S/.--.--", d: "--------------------------------" },
+            29: { n: "Encanto Violeta", p: "S/.26.00", d: "7 Rosas de liston + Moño + Mariposa" },
+            30: { n: "Ovejita del Amor", p: "S/.60.00", d: "9 Rosas de liston + Moño + Obejita" },
+            31: { n: "Héroe Arácnido", p: "S/.48.00", d: "10 Rosas de liston + Moño + Spiderman" },
+            32: { n: "Promesa Púrpura", p: "S/.58.00", d: "19 Rosas de liston + Liston con frase" },
+            33: { n: "Susurro de Lavanda", p: "S/.42.00", d: "14 Rosas de liston + Mariposas + Moño" },
+            34: { n: "Ohana Azul", p: "S/.110.00", d: "25 Rosas de liston + Moño con frase + Stich azul" },
+            35: { n: "Kitty Nube de Amor", p: "S/.110.00", d: "22 Rosas de liston + Moño con frase + Kitty" },
+            36: { n: "Corazón de Listón", p: "S/.58.00", d: "19 Rosas de liston + Liston con frase" },
+            37: { n: "Brisa Esmeralda", p: "S/.42.00", d: "14 Rosas de liston + Mariposas + Moño" },
+            38: { n: "Dulce Angel", p: "S/.115.00", d: "26 Rosas de liston + Moño con frase + Stich Rosado" },
+            39: { n: "Promesa Dorada", p: "S/.--.--", d: "--------------------------------" },
+            40: { n: "Marea de Amor", p: "S/.58.00", d: "19 Rosas de liston + Liston con frase" },
+            41: { n: "Snoopy Favorite", p: "S/.103.00", d: "24 Rosas de liston + Liston con frase + Snoopy" },
+            42: { n: "Dulzura de Chanchito", p: "S/.95.00", d: "27 Rosas de liston + Moño con frase + Cerdito" },
+            43: { n: "Lotso Sweet Dream", p: "S/.115.00", d: "35 Rosas de liston + Moño con frase + Lotso Importado" },
+            44: { n: "Pasión Infinita", p: "S/.60.00", d: "2 orquideas + amapola y tulipan a crochet" },
+            45: { n: "Gala Violeta Tejida", p: "S/.65.00", d: "2 orquideas + 2 tulipanes + clavel a crochet" },
+            46: { n: "Dulce Orquídea", p: "S/.60.00", d: "2 orquideas + 2 tulipanes a crochet" },
+            47: { n: "Sol de Lujo", p: "S/.65.00", d: "2 orquideas + 2 tulipanes + clavel a crochet" }
         };
 
-        const mensajeWA = encodeURIComponent(`Hola, estoy interesad@ en el ${info.nombre} (Imagen ${i}) por favor quisiera más información.`);
+        for (let i = 1; i <= 47; i++) {
+            const data = infoEspecial[i] || {
+                n: `Ramo Eterno #${i}`,
+                p: "S/.50.00",
+                d: "Detalle artesanal de San Valentín"
+            };
 
-        card.innerHTML = `
-            <img src="ramos areglos/${i}.jpeg" 
-                 alt="${info.nombre}" 
-                 onclick="openModal(this.src)"
-                 onerror="this.src='https://via.placeholder.com/300x400?text=Ramo+${i}'">
-            <div class="card-info">
-                <div>
-                    <h3>${info.nombre}</h3>
-                    <p>${info.desc}</p>
-                </div>
-                <div>
-                    <p class="price">${info.precio}</p>
-                    <a href="https://wa.me/${numeroWhatsApp}?text=${mensajeWA}" 
-                       target="_blank" 
-                       class="btn-order">
-                       Consultar por WhatsApp
-                    </a>
-                </div>
-            </div>
-        `;
-        catalogContainer.appendChild(card);
-    }
+            const card = document.createElement('div');
+            card.className = 'card';
+            const msg = encodeURIComponent(`¡Hola! Me interesa el modelo #${i} (${data.n}) de su catálogo.`);
 
-    function openModal(src) {
-        modal.style.display = "flex";
-        fullImg.src = src;
-    }
+            card.innerHTML = `
+                <img src="ramos areglos/${i}.jpeg" onclick="openModal(this.src)" onerror="this.src='https://via.placeholder.com/300x400?text=Modelo+${i}'">
+                <h3>${data.n}</h3>
+                <p>${data.d}</p>
+                <span class="price">${data.p}</span>
+                <a href="https://wa.me/${numWhatsApp}?text=${msg}" target="_blank" class="btn-order">Pedir por WhatsApp</a>
+            `;
+            catalog.appendChild(card);
+        }
 
-    function closeModal() {
-        modal.style.display = "none";
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") closeModal();
-    });
-</script>
+        function openModal(src) {
+            document.getElementById('imageModal').style.display = 'flex';
+            document.getElementById('fullImage').src = src;
+        }
+    </script>
 </body>
 
 </html>
-
-
